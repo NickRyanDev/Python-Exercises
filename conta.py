@@ -1,48 +1,48 @@
 class Conta:
 
-    def __init__(self, numero, titular, saldo, limite):
+    def __init__(self, number, owner, balance, limit):
         print(f"Criando conta {self}")
-        self.__numero = numero
-        self.__titular = titular
-        self.__saldo = saldo
-        self.__limite = limite
+        self.__numero = number
+        self.__titular = owner
+        self.__saldo = balance
+        self.__limite = limit
 
-    def extrato(self):
-        """mostra o daldo e o titular da conta"""
-        print(f"Saldo de {self.__saldo} do titular {self.__titular}")
+    def extract(self):
+        """shows balance and owner of account"""
+        print(f"Saldo de {self.__balance} do titular {self.__owner}")
 
-    def deposita(self, valor):
-        """executa o deposito de um valor na conta"""
-        self.__saldo += valor
+    def deposit(self, value):
+        """do deposit of value in an account"""
+        self.__balance += value
 
-    def __pode_sacar(self, valor_a_sacar):
-        """verificar se há disponibilidade de saque"""
-        valor_disponivel_a_sacar = self.__saldo + self.__limite
+    def __check_cash_out(self, value_to_cash_out):
+        """check withdrawal availability"""
+        value_to_cash_out = self.__balance + self.__limit
         return valor_a_sacar <= valor_disponivel_a_sacar
 
-    def saca(self, valor):
-        if(self.__pode_sacar(valor)):
-            self.__saldo -= valor
+    def cash_out(self, value):
+        if(self.__check_cash_out(value)):
+            self.__balance -= value
         else:
-            print(f"O valor {valor} passou o limite")
+            print(f"O valor {value} passou o limite")
 
-    def transfere(self, valor, destino):
-        """executa a transferencia de valores entre duas contas"""
-        self.saca(valor)
-        destino.deposita(valor)
-
-    @property
-    def saldo(self):
-        return self.__saldo
+    def transfer(self, valor, destino):
+        """performs the transfer of values between two accounts"""
+        self.cash_out(value)
+        destino.deposit(value)
 
     @property
-    def titular(self):
-        return self.__titular
+    def balance(self):
+        return self.__balance
+
+    @property
+    def owner(self):
+        return self.__owner
 
     @property
     def get_limite(self):
         return self.__limite
 
-    @self.limite.setter
-    def limite(self, limite):
-        self.__limite = limite
+    @self.limit.setter
+    def limit(self, limit):
+        self.__limit = limit
